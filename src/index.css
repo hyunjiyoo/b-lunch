@@ -1,15 +1,16 @@
-:root {
-
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  margin-top: 0.5rem;
   width: 100vw;
   height: 100vh;
+  background-color: lightyellow;
 }
 
 ul {
