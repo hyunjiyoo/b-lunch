@@ -1,16 +1,22 @@
 import { database } from 'api/firebase';
 import { ref, set, child, get } from 'firebase/database';
-import { UserType } from 'types';
+import { ProductType, UserType } from 'types';
 import { User } from 'firebase/auth';
 import { getUserFromLocalStorage } from 'util/getUserInfo';
+import { v4 as uuid } from 'uuid';
 
 const writeUserData = ({ uid, displayName, email, photoURL }: Partial<User>) => {
   const isAdmin = email === process.env.REACT_APP_ADMIN_USER;
   const data = { uid, displayName, email, photoURL, isAdmin } as UserType;
 
-  set(ref(database, 'users/' + uid), data);
+  set(ref(database, `users/${uid}`), data);
   localStorage.setItem('user', JSON.stringify(data));
 };
+
+const addProduct = (data: ProductType) => {
+  const id = uuid();
+  set(ref(database, `products/${id}`), data);
+}
 
 const readUserData = (): Promise<UserType | string> =>
   get(child(ref(database), `users/${getUserFromLocalStorage().uid}`))
@@ -31,4 +37,4 @@ const readUserData = (): Promise<UserType | string> =>
 
 const isAdminUser = () => {};
 
-export { writeUserData, readUserData, isAdminUser };
+export { writeUserData, addProduct, readUserData, isAdminUser };

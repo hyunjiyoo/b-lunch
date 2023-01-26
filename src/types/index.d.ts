@@ -12,10 +12,6 @@ export interface ProductType {
   category: string;
   description: string;
   option: string;
-  file: FileList;
-}
-
-export interface StateReturnType {
-  success: boolean;
-  data: any;
+  file?: FileList;
+  imageUrl?: string;
 }

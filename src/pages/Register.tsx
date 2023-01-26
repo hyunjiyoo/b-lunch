@@ -1,16 +1,12 @@
-import { CLOUDINARY_URL, UPLOAD_PRESET } from 'config/const';
+import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, UPLOAD_PRESET } from 'config/const';
+import { addProduct } from 'db/database';
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ProductType, StateReturnType } from 'types';
+import { ProductType } from 'types';
 
 export default function Register() {
-  const [imageUrl, setImageUrl] = useState<string>('https://via.placeholder.com/400');
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ProductType>();
+  const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE_URL);
+  const { register, handleSubmit, reset } = useForm<ProductType>();
 
   const previewImage = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files as FileList;
@@ -21,27 +17,31 @@ export default function Register() {
     }
   };
 
-  const imageUploadToCloudinary = async (file: File): Promise<StateReturnType> => {
+  const imageUploadToCloudinary = async (file: File) => {
     const body = new FormData();
     body.append('file', file);
     body.append('upload_preset', UPLOAD_PRESET);
 
     return fetch(CLOUDINARY_URL, { method: 'POST', body })
       .then((res) => res.json())
-      .then((data) => {
-        alert('새로운 제품이 성공적으로 등록되었습니다.');
-        return { success: true, data };
-      })
-      .catch((error) => {
-        console.error(error);
-
-        return { success: false, data: error };
-      });
+      .then((data) => data.url);
   };
 
   const registerProduct = async ({ name, price, category, description, option, file }: ProductType) => {
-    const { success, data } = await imageUploadToCloudinary(file[0]);
-    console.log(success, data);
+    try {
+      const fileObj = (file as unknown as FileList)[0];
+      const imgUrl = await imageUploadToCloudinary(fileObj);
+      const newItem = { name, price, category, description, option, imgUrl };
+      console.log(newItem)
+      addProduct(newItem);
+
+      alert('새로운 제품이 성공적으로 등록되었습니다.');
+      setImageUrl(DEFAULT_IMAGE_URL);
+      reset();
+
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
