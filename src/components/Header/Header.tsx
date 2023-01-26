@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BsGiftFill, BsCart4 } from "react-icons/bs";
-import { FiEdit} from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { logIn, logOut } from "api/sign";
 import { writeUserData } from "db/database";
@@ -15,7 +15,7 @@ export default function Header() {
     writeUserData(user);
     setAdmin(() => getUserFromLocalStorage().isAdmin);
     setIsLogin(true);
-  }
+  };
 
   const onLogOut = async () => {
     await logOut();
@@ -23,9 +23,9 @@ export default function Header() {
     localStorage.removeItem("user");
     setIsLogin(false);
     setAdmin(false);
-  }
+  };
 
-  const handleLogin = () => {
+  const handleLoginButton = () => {
     isLogin ? onLogOut() : onLogIn();
   };
 
@@ -38,17 +38,21 @@ export default function Header() {
       <div className="flex items-center">
         <nav>
           <ul className="flex gap-2">
-            <Link to="/products" className="cursor-pointer hover:opacity-70 mr-5">
+            <Link
+              to="/products"
+              className="cursor-pointer hover:opacity-70 mr-5"
+            >
               Products
             </Link>
           </ul>
         </nav>
-        {admin && <FiEdit className="cursor-pointer text-2xl mr-5" />}
+        {admin && (
+          <Link to="register">
+            <FiEdit className="cursor-pointer text-2xl mr-5" />
+          </Link>
+        )}
         <BsCart4 className="cursor-pointer text-2xl mr-5" />
-        <button
-          className="bg-orange-600 px-3 py-1 rounded text-white"
-          onClick={handleLogin}
-        >
+        <button className="bg-orange-600 px-3 py-1 rounded text-white" onClick={handleLoginButton}>
           {isLogin ? "Logout" : "Login"}
         </button>
       </div>

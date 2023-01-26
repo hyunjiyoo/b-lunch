@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import NotFound from 'pages/NotFound';
 import Products from 'pages/Products';
+import Register from 'pages/Register';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Products /> },
       { path: 'products', element: <Products /> },
+      { path: 'register', element: <Register /> },
     ]
   }
 ]);
