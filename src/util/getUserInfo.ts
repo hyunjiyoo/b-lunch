@@ -1,4 +1,4 @@
-import { UserType } from "types";
+import { UserType } from 'types';
 
 const initialUser: UserType = {
   uid: '',
@@ -12,4 +12,4 @@ export const getUserFromLocalStorage = (): UserType => {
   const localStorageUser = localStorage.getItem('user');
   const user = localStorageUser ? JSON.parse(localStorageUser) : initialUser;
   return user;
-}
+};

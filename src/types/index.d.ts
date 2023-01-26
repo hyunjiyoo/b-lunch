@@ -12,7 +12,7 @@ export interface ProductType {
   category: string;
   description: string;
   option: string;
-  file: FileList;  
+  file: FileList;
 }
 
 export interface StateReturnType {
