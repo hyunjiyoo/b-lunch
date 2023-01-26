@@ -14,3 +14,8 @@ export interface ProductType {
   option: string;
   file: FileList;  
 }
+
+export interface StateReturnType {
+  success: boolean;
+  data: any;
+}
