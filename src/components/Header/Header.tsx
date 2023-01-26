@@ -1,32 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BsGiftFill, BsCart4 } from "react-icons/bs";
+import { FiEdit} from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { logIn, logOut } from "api/sign";
-import { User } from "firebase/auth";
+import { writeUserData } from "db/database";
+import { getUserFromLocalStorage } from "util/getUserInfo";
 
 export default function Header() {
-  const [user, setUser] = useState<User | null>(() => readUserFromLocalStorage());
+  const [isLogin, setIsLogin] = useState<boolean>(() => !!getUserFromLocalStorage());
+  const [admin, setAdmin] = useState<boolean>(() => getUserFromLocalStorage().isAdmin);
 
   const onLogIn = async () => {
     const user = await logIn();
-    localStorage.setItem("user", JSON.stringify(user));
-    setUser(user);
+    writeUserData(user);
+    setAdmin(() => getUserFromLocalStorage().isAdmin);
+    setIsLogin(true);
   }
 
   const onLogOut = async () => {
     await logOut();
     alert("정상적으로 로그아웃되었습니다.");
     localStorage.removeItem("user");
-    setUser(null);
+    setIsLogin(false);
+    setAdmin(false);
   }
 
-  const handleClick = () => {
-    user ? onLogOut() : onLogIn();
+  const handleLogin = () => {
+    isLogin ? onLogOut() : onLogIn();
   };
-
-  useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
-  }, [user]);
 
   return (
     <header className="flex items-center justify-between mb-4">
@@ -37,24 +38,20 @@ export default function Header() {
       <div className="flex items-center">
         <nav>
           <ul className="flex gap-2">
-            <Link to="/products" className="cursor-pointer hover:opacity-70">
+            <Link to="/products" className="cursor-pointer hover:opacity-70 mr-5">
               Products
             </Link>
           </ul>
         </nav>
-        <BsCart4 className="cursor-pointer text-2xl mx-5" />
+        {admin && <FiEdit className="cursor-pointer text-2xl mr-5" />}
+        <BsCart4 className="cursor-pointer text-2xl mr-5" />
         <button
           className="bg-orange-600 px-3 py-1 rounded text-white"
-          onClick={handleClick}
+          onClick={handleLogin}
         >
-          {user ? "Logout" : "Login"}
+          {isLogin ? "Logout" : "Login"}
         </button>
       </div>
     </header>
   );
-}
-
-function readUserFromLocalStorage() {
-  const user = localStorage.getItem('user');
-  return user ? JSON.parse(user) : null;
 }
