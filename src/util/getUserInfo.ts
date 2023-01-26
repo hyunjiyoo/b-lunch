@@ -1,6 +1,6 @@
-import { User } from "types";
+import { UserType } from "types";
 
-const initialUser: User = {
+const initialUser: UserType = {
   uid: '',
   displayName: '',
   email: '',
@@ -8,7 +8,7 @@ const initialUser: User = {
   photoURL: '',
 };
 
-export const getUserFromLocalStorage = (): User => {
+export const getUserFromLocalStorage = (): UserType => {
   const localStorageUser = localStorage.getItem('user');
   const user = localStorageUser ? JSON.parse(localStorageUser) : initialUser;
   return user;

@@ -1,7 +1,7 @@
 import { database } from "api/firebase";
 import { ref, set, child, get } from "firebase/database";
-import { User } from "types";
-import { User as UserFromFirebase } from "firebase/auth";
+import { UserType } from "types";
+import { User } from "firebase/auth";
 import { getUserFromLocalStorage } from "util/getUserInfo";
 
 const writeUserData = ({
@@ -9,26 +9,26 @@ const writeUserData = ({
   displayName,
   email,
   photoURL,
-}: Partial<UserFromFirebase>) => {
+}: Partial<User>) => {
   const data = {
     uid,
     displayName,
     email,
     photoURL,
     isAdmin: email === process.env.REACT_APP_ADMIN_USER,
-  } as User;
+  } as UserType;
 
   set(ref(database, "users/" + uid), data);
   localStorage.setItem("user", JSON.stringify(data));
 };
 
-const readUserData = (): Promise<User | string> =>
+const readUserData = (): Promise<UserType | string> =>
   get(child(ref(database), `users/${getUserFromLocalStorage().uid}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
 
-        return snapshot.val() as User;
+        return snapshot.val() as UserType;
       } else {
         console.log("No data available");
         return "No data available";
