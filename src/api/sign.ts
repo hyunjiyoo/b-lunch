@@ -1,14 +1,12 @@
 import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   OAuthCredential,
   signOut,
 } from "firebase/auth";
-import { firebase } from "./firebase";
+import { auth } from "./firebase";
 
 const provider = new GoogleAuthProvider();
-const auth = getAuth(firebase);
 
 const logIn = () =>
   signInWithPopup(auth, provider).then((result) => {
