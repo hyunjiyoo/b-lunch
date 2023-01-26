@@ -3,9 +3,10 @@ import { addProduct } from 'db/database';
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductType } from 'types';
+import { v4 as uuid } from 'uuid';
 
 export default function Register() {
-  const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE_URL);
+  const [previewImg, setPreviewImage] = useState<string>(DEFAULT_IMAGE_URL);
   const { register, handleSubmit, reset } = useForm<ProductType>();
 
   const previewImage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +14,7 @@ export default function Register() {
 
     if (file.length > 0) {
       const src = URL.createObjectURL(file[0]);
-      setImageUrl(src);
+      setPreviewImage(src);
     }
   };
 
@@ -30,13 +31,14 @@ export default function Register() {
   const registerProduct = async ({ name, price, category, description, option, file }: ProductType) => {
     try {
       const fileObj = (file as unknown as FileList)[0];
-      const imgUrl = await imageUploadToCloudinary(fileObj);
-      const newItem = { name, price, category, description, option, imgUrl };
+      const imageUrl = await imageUploadToCloudinary(fileObj);
+      const id = uuid();
+      const newItem = { id, name, price, category, description, option, imageUrl };
       console.log(newItem)
       addProduct(newItem);
 
       alert('새로운 제품이 성공적으로 등록되었습니다.');
-      setImageUrl(DEFAULT_IMAGE_URL);
+      setPreviewImage(DEFAULT_IMAGE_URL);
       reset();
 
     } catch (error) {
@@ -50,7 +52,7 @@ export default function Register() {
       <hr className='mt-2 mb-4' />
       <div className='flex'>
         <div className='w-350px h-350px bg-slate-100 mr-4'>
-          <img src={imageUrl} alt='preview_image' className='w-full h-full object-contain' />
+          <img src={previewImg} alt='preview_image' className='w-full h-full object-contain' />
         </div>
         <form className='flex flex-col flex-1 gap-2' onSubmit={handleSubmit(registerProduct)}>
           <input
