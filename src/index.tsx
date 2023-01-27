@@ -7,6 +7,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import NotFound from 'pages/NotFound';
 import Products from 'pages/Products';
 import Register from 'pages/Register';
+import Detail from 'components/Product/Detail';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Products /> },
       { path: 'products', element: <Products /> },
+      { path: 'products/detail/:id', element: <Detail /> },
       { path: 'register', element: <Register /> },
     ],
   },
