@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { BsGiftFill, BsCart4 } from 'react-icons/bs';
 import { FiEdit } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logIn, logOut } from 'api/sign';
 import { writeUserData } from 'db/database';
 import { getUserFromLocalStorage } from 'util/getUserInfo';
 
 export default function Header() {
-  const [isLogin, setIsLogin] = useState<boolean>(() => !!getUserFromLocalStorage());
+  const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useState<boolean>(() => !!(getUserFromLocalStorage().uid));
   const [admin, setAdmin] = useState<boolean>(() => getUserFromLocalStorage().isAdmin);
 
   const onLogIn = async () => {
@@ -23,6 +24,7 @@ export default function Header() {
     localStorage.removeItem('user');
     setIsLogin(false);
     setAdmin(false);
+    navigate('/', { replace: true });
   };
 
   const handleLoginButton = () => {
@@ -48,7 +50,9 @@ export default function Header() {
             <FiEdit className='cursor-pointer text-2xl mr-5' />
           </Link>
         )}
-        <BsCart4 className='cursor-pointer text-2xl mr-5' />
+        <Link to='cart'>
+          <BsCart4 className='cursor-pointer text-2xl mr-5'/>
+        </Link>
         <button className='bg-orange-600 px-3 py-1 rounded text-white' onClick={handleLoginButton}>
           {isLogin ? 'Logout' : 'Login'}
         </button>
