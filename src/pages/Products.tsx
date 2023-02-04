@@ -24,7 +24,7 @@ export default function Products() {
   return (
     <>
       {window.location.pathname === '/' && <Banner />}
-      <ul className='flex flex-wrap pt-2 justify-between'>
+      <ul className='grid lg:grid-cols-4 md:grid-cols-3 gap-3 mt-3'>
         {products.map((product: ProductType) => (
           <Product key={product.id} product={product} />
         ))}
