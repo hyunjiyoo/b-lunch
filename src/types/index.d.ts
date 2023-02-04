@@ -13,6 +13,7 @@ export interface ProductType {
   category: string;
   description: string;
   option: string;
+  count?: number;
   file?: FileList;
   imageUrl?: string;
 }
