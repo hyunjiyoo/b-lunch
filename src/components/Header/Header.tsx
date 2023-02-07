@@ -40,7 +40,7 @@ export default function Header() {
   
   useEffect(() => {
     updateCount();
-  }, [uid, count]);
+  }, [uid, count, updateCount]);
 
   return (
     <header className='flex items-center justify-between mb-4'>

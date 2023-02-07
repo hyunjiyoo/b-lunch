@@ -60,7 +60,7 @@ export default function Carts() {
     }
 
     setCartItems(getCartItems());
-  }, []);
+  }, [navigate]);
 
   return (
     <div>
