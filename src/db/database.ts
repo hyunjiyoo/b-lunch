@@ -1,8 +1,8 @@
 import { database } from 'api/firebase';
 import { ref, set, child, get } from 'firebase/database';
-import { ProductType, UserType } from 'types';
+import { ProductType, UserType, CartType } from 'types';
 import { User } from 'firebase/auth';
-import { getUserFromLocalStorage } from 'util/getUserInfo';
+import { getUserInfo } from 'util/\bcommon';
 
 const writeUserData = ({ uid, displayName, email, photoURL }: Partial<User>) => {
   const isAdmin = email === process.env.REACT_APP_ADMIN_USER;
@@ -12,22 +12,45 @@ const writeUserData = ({ uid, displayName, email, photoURL }: Partial<User>) => 
   localStorage.setItem('user', JSON.stringify(data));
 };
 
+const writeCartData = (uid: string) => {
+  const userCart = JSON.parse(localStorage.cart ?? JSON.stringify({}));    
+
+  set(ref(database, `carts/${uid}`), userCart);
+};
+
 const addProduct = (data: ProductType) => {
   set(ref(database, `products/${data.id}`), data);
 };
 
-const getAllProducts = (): Promise<ProductType[]> => 
-  get(child(ref(database), `products/`))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        return Object.values(snapshot.val());
-      } else {
-        return [] as ProductType[];
-      }
+const getCartProducts = (uid: string): Promise<CartType> =>
+  get(child(ref(database), `carts/${uid}`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      return {} as CartType;
+    }
+  });
+
+const getAllProducts = (): Promise<ProductType[]> =>
+  get(child(ref(database), `products/`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    } else {
+      return [] as ProductType[];
+    }
+  });
+
+const getProductById = (id: string): Promise<ProductType[]> =>
+  get(child(ref(database), `products/${id}`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    } else {
+      return [] as ProductType[];
+    }
   });
 
 const readUserData = (): Promise<UserType | string> =>
-  get(child(ref(database), `users/${getUserFromLocalStorage().uid}`))
+  get(child(ref(database), `users/${getUserInfo().uid}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
@@ -45,4 +68,4 @@ const readUserData = (): Promise<UserType | string> =>
 
 const isAdminUser = () => {};
 
-export { writeUserData, addProduct, getAllProducts, readUserData, isAdminUser };
+export { writeUserData, writeCartData, getCartProducts, addProduct, getAllProducts, getProductById, readUserData, isAdminUser };

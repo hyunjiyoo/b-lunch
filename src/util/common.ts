@@ -1,16 +1,14 @@
-import { getUserFromLocalStorage } from 'util/getUserInfo';
+import { initialUser } from "config/const";
 
 const convertPriceFormat = (price: number) => {
   return '₩' + (+price).toLocaleString('en');
 }
 
-const isLogin = () => {
-  const user = getUserFromLocalStorage();
-  if (!user.uid) {
-    alert('로그인을 먼저 해주세요.');
-    return false;
-  }
-  return true;
+const getUserInfo = () => {
+  const localStorageUser = localStorage.getItem('user');
+  const user = localStorageUser ? JSON.parse(localStorageUser) : initialUser;
+
+  return user || initialUser;
 }
 
-export { convertPriceFormat, isLogin };
+export { convertPriceFormat, getUserInfo };

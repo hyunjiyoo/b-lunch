@@ -1,40 +1,63 @@
-import { updateCount, useCartCount } from 'context/CartContext';
+import { MESSAGE } from 'config/const';
+import { useCart } from 'context/CartContext';
+import * as R from 'ramda';
 import { ChangeEvent, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { convertPriceFormat, isLogin } from 'util/\bcommon';
+import { CartType, ProductType } from 'types';
+import { convertPriceFormat, getUserInfo } from 'util/\bcommon';
+
+interface UpdateCartItemsType {
+  cartItems: CartType;
+  selectedItem: ProductType;
+  key: string;
+}
 
 export default function Detail() {
   const navigate = useNavigate();
-  const { state: { product } } = useLocation();
+  const {
+    state: { product },
+  } = useLocation();
   const [selectedOption, setSelectedOption] = useState<string>('');
-  const { setCount } = useCartCount();
-  const { id, name, price, description, imageUrl, option, category } = product;
+  const { name, price, description, imageUrl, option, category } = product;
+  const { updateCount } = useCart();
 
   const selectOption = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(e.target.value);
-  }
+  };
+
+  const updateCartItems = ({ cartItems, selectedItem, key }: UpdateCartItemsType) => {
+    if (R.isNil(cartItems[key])) {
+      return { ...cartItems, [key]: selectedItem };
+    }
+
+    return { ...cartItems, [key]: { ...cartItems[key], count: cartItems[key].count + 1 } };
+  };
 
   const putProductToCart = () => {
-    if (!isLogin()) {
+    const { uid } = getUserInfo();
+    if (R.isEmpty(uid)) {
+      alert(MESSAGE.LOGIN_INFO);
       return;
     }
 
-    if (selectedOption === 'none') {
-      alert('옵션을 먼저 선택해주세요.');
+    if (R.isEmpty(selectedOption)) {
+      alert(MESSAGE.OPTION_INFO);
       return;
     }
 
-    const cartItemsFromLocalStorage = localStorage.cart ?? JSON.stringify({});
-    const cartItems = JSON.parse(cartItemsFromLocalStorage);
-    const key = `${id}_${selectedOption}`;
+    const cartItems = JSON.parse(localStorage.cart ?? JSON.stringify({}));
+    const selectedItem = { ...product, option: selectedOption, count: 1 };
+    const key = `${product.id}_${selectedOption}`;
 
-    cartItems[key] = (cartItems[key] ?? 0) + 1;
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-    setCount(updateCount);
-
-    if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
-      navigate('/cart', { state: { cartItems }});
+    if (R.isEmpty(cartItems)) {
+      localStorage.setItem('cart', JSON.stringify({ [key]: selectedItem }));
+    } else {
+      const updated = updateCartItems({ cartItems, selectedItem, key });
+      localStorage.setItem('cart', JSON.stringify(updated));
     }
+
+    updateCount();
+    window.confirm(MESSAGE.CART_INFO) && navigate('/carts');
   };
 
   return (
@@ -52,7 +75,7 @@ export default function Detail() {
           <div className='flex items-center'>
             <p className='mr-2 text-sm text-white py-1 px-2 border border-orange-500 bg-orange-500 font-semibold'>옵션</p>
             <select value={selectedOption} className='my-4 border-2 border-orange-500 flex-1 p-1 text-slate-600 text-sm' onChange={selectOption}>
-              <option value='none'>옵션을 선택해주세요</option>
+              <option value=''>옵션을 선택해주세요</option>
               {option.split(',').map((opt: string, idx: number) => (
                 <option key={`${opt}_${idx}`} value={opt.trim()}>
                   {opt.trim()}

@@ -1,42 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsGiftFill, BsCart4 } from 'react-icons/bs';
 import { FiEdit } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import { logIn, logOut } from 'api/sign';
-import { writeUserData } from 'db/database';
-import { getUserFromLocalStorage } from 'util/getUserInfo';
-import { updateCount, useCartCount } from 'context/CartContext';
+import { getCartProducts, writeCartData, writeUserData } from 'db/database';
+import { getUserInfo } from 'util/\bcommon';
+import { useCart } from 'context/CartContext';
 
 export default function Header() {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState<boolean>(() => !!(getUserFromLocalStorage().uid));
-  const [admin, setAdmin] = useState<boolean>(() => getUserFromLocalStorage().isAdmin);
-  const { count, setCount } = useCartCount();
+  const [uid, setUid] = useState<string>(() => getUserInfo().uid);
+  const [admin, setAdmin] = useState<boolean>(() => getUserInfo().isAdmin);
+  const { count, updateCount } = useCart();
 
   const onLogIn = async () => {
     const user = await logIn();
+    const cart = await getCartProducts(user.uid);
+        
     writeUserData(user);
-    setAdmin(() => getUserFromLocalStorage().isAdmin);
-    setCount(updateCount);
-    setIsLogin(true);
+    setUid(() => getUserInfo().uid);
+    setAdmin(() => getUserInfo().isAdmin);
+    localStorage.setItem('cart', JSON.stringify(cart));
   };
 
   const onLogOut = async () => {
-    if (!window.confirm('로그아웃하시면 장바구니에 있는 상품이 모두 초기화됩니다.\n정말로 로그아웃하시겠습니까?')) {
-      return;
-    }
-
     await logOut();
-    localStorage.clear();
-    setIsLogin(false);
+    
+    writeCartData(uid);
+    setUid('');
     setAdmin(false);
-    setCount(0);
+    localStorage.clear();
     navigate('/', { replace: true });
+    alert('정상적으로 로그아웃되었습니다.');
   };
 
   const handleLoginButton = () => {
-    isLogin ? onLogOut() : onLogIn();
+    uid ? onLogOut() : onLogIn();
   };
+  
+  useEffect(() => {
+    updateCount();
+  }, [uid, count]);
 
   return (
     <header className='flex items-center justify-between mb-4'>
@@ -57,12 +61,14 @@ export default function Header() {
             <FiEdit className='cursor-pointer text-2xl mr-5' />
           </Link>
         )}
-        <Link to='cart' className='relative'>
+        <Link to='carts' className='relative'>
           <BsCart4 className='cursor-pointer text-2xl mr-5'/>
-          <span className='absolute bg-orange-500 text-white rounded-full text-sm px-1.5 right-2 bottom-2'>{count > 0 && count}</span>
+          <span className='absolute bg-orange-500 text-white rounded-full text-sm px-1.5 right-2 bottom-2'>
+            {count || ''}
+          </span>
         </Link>
         <button className='bg-orange-600 px-3 py-1 rounded text-white' onClick={handleLoginButton}>
-          {isLogin ? 'Logout' : 'Login'}
+          {uid ? 'Logout' : 'Login'}
         </button>
       </div>
     </header>

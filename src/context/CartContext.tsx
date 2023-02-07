@@ -1,16 +1,11 @@
-import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 interface CartContextProps {
   count: number;
-  setCount: Dispatch<SetStateAction<number>>;
+  updateCount: () => void;
 }
 
-const defaultValues = {
-  count: 0,
-  setCount: () => null,
-};
-
-const CartContext = createContext<CartContextProps>(defaultValues);
+const CartContext = createContext<CartContextProps>({} as CartContextProps);
 
 interface CartProviderProps {
   children: JSX.Element;
@@ -19,16 +14,12 @@ interface CartProviderProps {
 export function CartProvider({ children }: CartProviderProps) {
   const [count, setCount] = useState<number>(0);
 
-  useEffect(() => {
-    setCount(updateCount);
-  }, []);
+  const updateCount = () => {
+    const cart = JSON.parse(localStorage.cart ?? JSON.stringify({}));
+    setCount(Object.keys(cart).length);
+  }
 
-  return <CartContext.Provider value={{ count, setCount }}>{children}</CartContext.Provider>;
+  return <CartContext.Provider value={{ count, updateCount }}>{children}</CartContext.Provider>;
 }
 
-export function updateCount() {
-  const cartItem = localStorage.cart;
-  return cartItem ? Object.keys(JSON.parse(cartItem)).length : 0;
-}
-
-export const useCartCount = () => useContext(CartContext);
+export const useCart = () => useContext(CartContext);

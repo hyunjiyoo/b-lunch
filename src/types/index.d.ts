@@ -17,3 +17,9 @@ export interface ProductType {
   file?: FileList;
   imageUrl?: string;
 }
+
+type UserCart = ProductType & {
+  count: number,
+};
+
+export type CartType = Record<string, UserCart>;
