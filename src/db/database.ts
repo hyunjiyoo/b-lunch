@@ -2,7 +2,7 @@ import { database } from 'api/firebase';
 import { ref, set, child, get } from 'firebase/database';
 import { ProductType, UserType, CartType } from 'types';
 import { User } from 'firebase/auth';
-import { getUserInfo } from 'util/\bcommon';
+import { getCartItems, getUserInfo } from 'util/\bcommon';
 
 const writeUserData = ({ uid, displayName, email, photoURL }: Partial<User>) => {
   const isAdmin = email === process.env.REACT_APP_ADMIN_USER;
@@ -13,8 +13,7 @@ const writeUserData = ({ uid, displayName, email, photoURL }: Partial<User>) => 
 };
 
 const writeCartData = (uid: string) => {
-  const userCart = JSON.parse(localStorage.cart ?? JSON.stringify({}));    
-
+  const userCart = getCartItems();    
   set(ref(database, `carts/${uid}`), userCart);
 };
 

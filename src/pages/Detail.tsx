@@ -4,7 +4,7 @@ import * as R from 'ramda';
 import { ChangeEvent, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CartType, ProductType } from 'types';
-import { convertPriceFormat, getUserInfo } from 'util/\bcommon';
+import { convertPriceFormat, getCartItems, getUserInfo } from 'util/\bcommon';
 
 interface UpdateCartItemsType {
   cartItems: CartType;
@@ -45,7 +45,7 @@ export default function Detail() {
       return;
     }
 
-    const cartItems = JSON.parse(localStorage.cart ?? JSON.stringify({}));
+    const cartItems = getCartItems();
     const selectedItem = { ...product, option: selectedOption, count: 1 };
     const key = `${product.id}_${selectedOption}`;
 

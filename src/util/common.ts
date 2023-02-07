@@ -11,4 +11,8 @@ const getUserInfo = () => {
   return user || initialUser;
 }
 
-export { convertPriceFormat, getUserInfo };
+const getCartItems = () => {
+  return JSON.parse(localStorage.cart ?? JSON.stringify({}));
+}
+
+export { convertPriceFormat, getUserInfo, getCartItems };

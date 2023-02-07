@@ -8,7 +8,7 @@ import NotFound from 'pages/NotFound';
 import Products from 'pages/Products';
 import Register from 'pages/Register';
 import Detail from 'pages/Detail';
-import Cart from 'pages/Cart';
+import Carts from 'pages/Carts';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       { path: 'products', element: <Products /> },
       { path: 'products/detail/:id', element: <Detail /> },
       { path: 'register', element: <Register /> },
-      { path: 'cart', element: <Cart /> },
+      { path: 'carts', element: <Carts /> },
     ],
   },
 ]);
