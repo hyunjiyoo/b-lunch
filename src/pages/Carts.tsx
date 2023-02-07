@@ -91,6 +91,7 @@ export default function Carts() {
       <button type='button' className='bg-orange-500 text-white font-semibold p-2 w-full rounded' onClick={handleOrder}>
         주문하기
       </button>
+      <p className='text-gray-500 text-right mt-2 text-sm'>* 상품 금액 ₩100,000원 이상일 경우 무료배송</p>
     </div>
   );
 }

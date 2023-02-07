@@ -10,7 +10,6 @@ export default function Products() {
   const getProducts = async () => {
     try {
       const products = await getAllProducts();
-      console.log(products);
       setProducts(products);
     } catch (error) {
       console.error(error);
