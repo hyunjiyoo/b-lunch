@@ -51,8 +51,9 @@ export default function Carts() {
   useEffect(() => {
     const totPrice = Object.values(cartItems).reduce((acc, { price, count }) => acc + price * count!, 0);
     setProductPrice(totPrice);
-    productPrice >= FREE_DELIVERTY_PRICE ? setDeliveryPrice(0) : setDeliveryPrice(DELIVERY_COST);
 
+    const freeDeliveryPriceCondition = (productPrice >= FREE_DELIVERTY_PRICE) || productPrice === 0;
+    freeDeliveryPriceCondition ? setDeliveryPrice(0) : setDeliveryPrice(DELIVERY_COST);
   }, [cartItems, productPrice]);
 
   useEffect(() => {
