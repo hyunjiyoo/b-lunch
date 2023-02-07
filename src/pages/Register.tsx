@@ -1,8 +1,9 @@
-import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, UPLOAD_PRESET } from 'config/const';
+import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, LIMIT_PRODUCT_PRICE, UPLOAD_PRESET } from 'config/const';
 import { addProduct } from 'db/database';
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductType } from 'types';
+import { convertPriceFormat } from 'util/\bcommon';
 import { v4 as uuid } from 'uuid';
 
 export default function Register() {
@@ -43,6 +44,12 @@ export default function Register() {
       return false;
     }
 
+    if (product.price > LIMIT_PRODUCT_PRICE) {
+      const limitProductPrice = convertPriceFormat(LIMIT_PRODUCT_PRICE, '원', '');
+      alert(`상품의 금액은 ${limitProductPrice} 이하만 등록할 수 있습니다.`);
+      return false;
+    }
+
     if (!invalidOptionValue) {
       alert('옵션을 올바로 입력해주세요.');
       return false;
@@ -53,7 +60,9 @@ export default function Register() {
 
   const registerProduct = async (product: ProductType) => {
     try {
-      if (isValidateForm(product)) return;
+      if (!isValidateForm(product)) {
+        return;
+      }
 
       const { name, price, category, description, option, file } = product;
       const fileObj = (file as unknown as FileList)[0];
