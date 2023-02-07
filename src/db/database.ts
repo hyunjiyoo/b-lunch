@@ -5,7 +5,7 @@ import { User } from 'firebase/auth';
 import { getCartItems, getUserInfo } from 'util/\bcommon';
 
 const writeUserData = ({ uid, displayName, email, photoURL }: Partial<User>) => {
-  const isAdmin = email === process.env.REACT_APP_ADMIN_USER;
+  const isAdmin = !!(process.env.REACT_APP_ADMIN_USER?.includes(email as string));
   const data = { uid, displayName, email, photoURL, isAdmin } as UserType;
 
   set(ref(database, `users/${uid}`), data);
