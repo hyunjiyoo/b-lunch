@@ -16,8 +16,8 @@ export default function Product({ product }: ProductProps) {
 
   return (
     <li className='flex flex-col border border-slate-200 shadow-md cursor-pointer hover:opacity-95' onClick={gotoDetailPage}>
-      <div className='h-250px bg-orange-50 py-2'>
-        <img src={imageUrl} alt={`${name}_image`} className='h-full object-fill m-auto rounded hover:scale-y-105 ease-in duration-300' />
+      <div className='h-220px bg-orange-50'>
+        <img src={imageUrl} alt={`${name}_image`} className='w-180px min-w-180px p-2 h-full object-cover m-auto rounded hover:scale-y-105 ease-in duration-300' />
       </div>
       <div className='px-2 pt-1 flex justify-between min-w-fit'>
         <p className=''>{name}</p>

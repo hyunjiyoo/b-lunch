@@ -33,8 +33,8 @@ export default function Cart({ item, handleDecrease, handleIncrease, handleDelet
   return (
     <li className='flex mb-3 items-center bg-slate-50 justify-between'>
       <div className='flex items-center gap-5'>
-        <div className='h-150px bg-slate-100 p-3 rounded'>
-          <img src={imageUrl} alt={name} className='h-full rounded-full object-fill' />
+        <div className='h-150px w-120px bg-slate-100 p-3 rounded'>
+          <img src={imageUrl} alt={name} className='w-full h-full rounded-full object-fill' />
         </div>
         <div>
           <p className='font-semibold'>{name}</p>
