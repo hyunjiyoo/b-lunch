@@ -1,7 +1,7 @@
 import { initialUser } from "config/const";
 
-const convertPriceFormat = (price: number) => {
-  return '₩' + (+price).toLocaleString('en');
+const convertPriceFormat = (price: number, won = '', unit = '₩') => {
+  return unit + (+price).toLocaleString('en') + won;
 }
 
 const getUserInfo = () => {

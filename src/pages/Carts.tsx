@@ -44,13 +44,15 @@ export default function Carts() {
   };
 
   const handleOrder = () => {
-    window.confirm('주문을 진행하시겠습니까?') && alert('🧡 주문완료 🧡');
+    const totalPrice = convertPriceFormat(productPrice + deliveryPrice, '원', '');
+    window.confirm(`총 주문금액은 ${totalPrice}입니다.\n주문을 진행하시겠습니까?`) && alert('🧡 주문완료 🧡');
   };
 
   useEffect(() => {
     const totPrice = Object.values(cartItems).reduce((acc, { price, count }) => acc + price * count!, 0);
     setProductPrice(totPrice);
-    productPrice >= FREE_DELIVERTY_PRICE && setDeliveryPrice(0);
+    productPrice >= FREE_DELIVERTY_PRICE ? setDeliveryPrice(0) : setDeliveryPrice(DELIVERY_COST);
+
   }, [cartItems, productPrice]);
 
   useEffect(() => {
