@@ -46,7 +46,7 @@ export default function Header() {
     <header className='flex items-center justify-between mb-4'>
       <Link to='/' className='flex items-center text-orange-600 cursor-pointer'>
         <BsGiftFill className='text-xl' />
-        <h1 className='text-2xl ml-2'>B-Lunch</h1>
+        <h1 className='text-2xl ml-2 w-max'>B-Lunch</h1>
       </Link>
       <div className='flex items-center'>
         <nav>

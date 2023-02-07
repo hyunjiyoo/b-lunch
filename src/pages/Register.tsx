@@ -28,13 +28,39 @@ export default function Register() {
       .then((data) => data.url);
   };
 
-  const registerProduct = async ({ name, price, category, description, option, file }: ProductType) => {
+  const isValidateForm = (product: ProductType) => {
+    const isFileEmpty = (product.file as FileList).length === 0;
+    const isEmpty = Object.values(product).includes('');
+    const invalidOptionValue = product.option.replaceAll(',', '');
+
+    if (isFileEmpty) {
+      alert('이미지를 등록해주세요.');
+      return false;
+    }
+
+    if (isEmpty) {
+      alert('빈칸을 모두 채워주세요.');
+      return false;
+    }
+
+    if (!invalidOptionValue) {
+      alert('옵션을 올바로 입력해주세요.');
+      return false;
+    }
+
+    return true;
+  }
+
+  const registerProduct = async (product: ProductType) => {
     try {
+      if (isValidateForm(product)) return;
+
+      const { name, price, category, description, option, file } = product;
       const fileObj = (file as unknown as FileList)[0];
       const imageUrl = await imageUploadToCloudinary(fileObj);
       const id = uuid();
       const newItem = { id, name, price, category, description, option, imageUrl };
-      console.log(newItem)
+      console.log(newItem);
       addProduct(newItem);
 
       alert('새로운 제품이 성공적으로 등록되었습니다.');
