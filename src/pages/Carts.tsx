@@ -44,6 +44,11 @@ export default function Carts() {
   };
 
   const handleOrder = () => {
+    if (productPrice === 0) {
+      alert('1가지 이상의 제품을 담아주세요🧡');
+      return;
+    }
+
     const totalPrice = convertPriceFormat(productPrice + deliveryPrice, '원', '');
     window.confirm(`총 주문금액은 ${totalPrice}입니다.\n주문을 진행하시겠습니까?`) && alert('🧡 주문완료 🧡');
   };

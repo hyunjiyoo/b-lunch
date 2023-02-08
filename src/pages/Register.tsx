@@ -1,4 +1,4 @@
-import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, UPLOAD_PRESET } from 'config/const';
+import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, LIMIT_PRODUCT_PRICE, UPLOAD_PRESET } from 'config/const';
 import { addProduct } from 'db/database';
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -93,7 +93,7 @@ export default function Register() {
             })}
           />
           <input type='text' placeholder='제품명' className='text-sm border-2 p-2 outline-orange-400' {...register('name')} />
-          <input type='number' min={1} max={1000000} placeholder='가격' className='text-sm border-2 p-2 outline-orange-400' {...register('price')} />
+          <input type='number' min={1} max={LIMIT_PRODUCT_PRICE} placeholder='가격' className='text-sm border-2 p-2 outline-orange-400' {...register('price')} />
           <input type='text' placeholder='카테고리' className='text-sm border-2 p-2 outline-orange-400' {...register('category')} />
           <input type='text' placeholder='제품 설명' className='text-sm border-2 p-2 outline-orange-400' {...register('description')} />
           <input type='text' placeholder='옵션들(콤마(,)로 구분)' className='text-sm border-2 p-2 outline-orange-400' {...register('option')} />
