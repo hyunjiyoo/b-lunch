@@ -29,6 +29,9 @@
 ## ▪️ 데모
 https://b-lunch.netlify.app/
 
+아래는 Admin 계정으로 로그인했을 경우, 상품등록 진행화면입니다.
+
+<img src="https://res.cloudinary.com/dg0bagjoq/image/upload/v1675846527/ludfmzibb4ex5v7xpvsi.gif" alt="register" width="300px"/>
 <br />
 
 ## ▪️ 어떤 서비스 ? 
