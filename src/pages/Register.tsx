@@ -3,7 +3,6 @@ import { addProduct } from 'db/database';
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductType } from 'types';
-import { convertPriceFormat } from 'util/\bcommon';
 import { v4 as uuid } from 'uuid';
 
 export default function Register() {
