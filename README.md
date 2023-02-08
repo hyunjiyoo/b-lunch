@@ -1,47 +1,103 @@
-# Getting Started with Create React App
+<div align="center">
+  <img src="./public/logo192.png" alt="logo" width="120px" />
+  <h2>B-Lunch</h2>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+---
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Tailwind CSS-0C152A?style=flat-square&logo=Tailwind CSS&logoColor=white"/>
 
-In the project directory, you can run:
+<img src="https://img.shields.io/badge/React Router-F44250?style=flat-square&logo=ReactRouter&logoColor=white"/>
+<img src="https://img.shields.io/badge/React Icons-E91E62?style=flat-square&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/React Hook Form-EC5990?style=flat-square&logo=ReactHookForm&logoColor=black"/>
+<img src="https://img.shields.io/badge/RamdaJS-884499?style=flat-square&logoColor=white"/>
+<img src="https://img.shields.io/badge/YupResolver-orange?style=flat-square&logo=Yup&logoColor=white"/>
 
-### `yarn start`
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/>
+<img src="https://img.shields.io/badge/Cloudinary-3447C5?style=flat-square&logoColor=white"/>
+<img src="https://img.shields.io/badge/Yarnberry-2B8EBB?style=flat-square&logo=Yarn&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
+<img src="https://img.shields.io/badge/Netlify-070B0E?style=flat-square&logo=Netlify&logoColor=47A3BD"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## ▪️ 데모
+https://b-lunch.netlify.app/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br />
 
-### `yarn build`
+## ▪️ 어떤 서비스 ❓
+**나만의 도시락을 만들어 주는 쇼핑몰 (Balanced Lunch)**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+카테고리 별로 담고싶은 음식을 담으면 당일 배송해주는 영양가있는 도시락을 신선하게 받을 수 있다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ▪️ 기능 구현
+- 일반계정과 어드민계정을 분리하여, 어드민일 경우 상품등록 가능
+- firebase Google OAuth 로그인 구현
+- firebase Database 연동
+- cloudinary 이미지저장소 연동하여 등록한 이미지 클라우드에 저장
+- localStorage에 장바구니 데이터 저장
+- yup 라이브러리 사용해 폼데이터 validation 검증
+- React Hook Form 이용해 폼데이터 전달
 
-### `yarn eject`
+<br />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## ▪️ 프로젝트를 통해 배운점
+- 코드를 작성하기 전 데이터 구조 설계에 대한 고민하는 시간을 아끼지 말자.
+  - 데이터 특성을 파악하여 어디에 저장할지 고민하고,
+  - 데이터를 전달받는 곳에서도 데이터 생성시 만든 구조를 통해 접근하기 편하도록 설계한다.
+- 어플리케이션의 전체적인 구조가 어떻게 가고있는지 유념하자.
+- 개발 중에 잘 안되는 경우에는 잠시 멈추고 내가 무엇을 시도하고 있는지, 무엇을 시도하였는지 점검해본다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## ▪️ 느낀점
+```text
+항상 그래왔듯이.. 아쉬움과 뿌듯함이 공존한다.
+하지만 나는 이 프로젝트를 하며 나의 실패경험에 집중해본다.
+많은 시도에 따른 실패를 통해 배움이 있었고, 나는 성장했다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+처음 프로젝트를 시작할때의 설렘을 기억한다. 
+아직 완성되지 않은 기능들이 나의 숙제로 남아있지만 언젠가 나도 내가 개발한 어플리케이션으로 수익을 보는 날이 오지 않을까 기대해본다.
+```
 
-## Learn More
+<br />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ▪️ 미래의 나자신아 이 기능을 개발해주겠니❓
+- 등록한 상품 수정 및 삭제 기능
+- 주문하기 기능
+- 구글 계정 이외의 계정으로 로그인 추가
+- 장바구니 상품이 삭제되는 만료기간 설정
+- ...
 
-To learn React, check out the [React documentation](https://reactjs.org/).
- b-lunch
+
+<br />
+
+## ▪️ 개발 기간
+- 2023.01.18 ~ 2023.02.08
+
+<br />
+
+## ▪️ 사용 언어
+<img 
+  src="https://user-images.githubusercontent.com/23496927/148519290-7ba474cb-a1d3-49fc-9da9-ede3555130eb.png" 
+  height="60px" />
+<img 
+  src="https://user-images.githubusercontent.com/23496927/148519299-97198ced-65ad-4fc7-94c2-ec706404901c.png" 
+  height="60px" />
+<img 
+  src="https://res.cloudinary.com/dg0bagjoq/image/upload/v1675839671/rvgrry8jifqfd6phdz5p.png" 
+  height="60px" />
+
+<br />
+
+## ▪️ 배포
+<img 
+  src="https://user-images.githubusercontent.com/23496927/148517276-c7fe849e-0921-4a75-88f8-959e2b7a8328.jpeg" 
+  width="30%" 
+  title="Netlify_Logo"/>
