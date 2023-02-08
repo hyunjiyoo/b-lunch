@@ -1,4 +1,4 @@
-import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, LIMIT_PRODUCT_PRICE, UPLOAD_PRESET } from 'config/const';
+import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, UPLOAD_PRESET } from 'config/const';
 import { addProduct } from 'db/database';
 import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
