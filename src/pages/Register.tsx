@@ -30,7 +30,7 @@ export default function Register() {
 
   const isValidateForm = (product: ProductType) => {
     const isFileEmpty = (product.file as FileList).length === 0;
-    const isEmpty = Object.values(product).includes('');
+    const isEmpty = Object.values(product).slice(1).map((prod: string) => prod.trim()).includes('');
     const invalidOptionValue = product.option.replaceAll(',', '');
 
     if (isFileEmpty) {
