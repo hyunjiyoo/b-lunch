@@ -3,8 +3,6 @@
   <h2>B-Lunch</h2>
 </div>
 
-
----
 <div>
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
   <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/>
@@ -88,6 +86,7 @@ https://b-lunch.netlify.app/
 - 주문하기 기능
 - 구글 계정 이외의 계정으로 로그인 추가
 - 장바구니 상품이 삭제되는 만료기간 설정
+- 모바일 반응형 UI
 - ...
 
 
