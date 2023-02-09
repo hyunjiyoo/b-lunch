@@ -18,7 +18,7 @@
 <div>
   <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/>
   <img src="https://img.shields.io/badge/Cloudinary-3447C5?style=flat-square&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Yarnberry-2B8EBB?style=flat-square&logo=Yarn&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Yarn-2B8EBB?style=flat-square&logo=Yarn&logoColor=white"/>
   <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
   <img src="https://img.shields.io/badge/Netlify-070B0E?style=flat-square&logo=Netlify&logoColor=47A3BD"/>
 </div>
