@@ -1,12 +1,15 @@
-import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, UPLOAD_PRESET } from 'config/const';
+import { CLOUDINARY_URL, DEFAULT_IMAGE_URL, MESSAGE, UPLOAD_PRESET } from 'config/const';
 import { addProduct } from 'db/database';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductType } from 'types';
+import * as R from 'ramda';
 import { v4 as uuid } from 'uuid';
 import Error from 'components/Error/Error';
+import { getUserInfo } from 'util/\bcommon';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
   file: yup.mixed().test('filesize', '파일을 등록해주세요', (file: FileList) => file.length > 0),
@@ -24,6 +27,7 @@ const schema = yup.object({
 });
 
 export default function Register() {
+  const navigate = useNavigate();
   const [previewImg, setPreviewImage] = useState<string>(DEFAULT_IMAGE_URL);
   const {
     register,
@@ -70,6 +74,18 @@ export default function Register() {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (R.isEmpty(getUserInfo().uid)) {
+      alert(MESSAGE.LOGIN_INFO);
+      navigate('/');
+    }
+    
+    if (!R.isEmpty(getUserInfo().isAdmin)) {
+      alert(MESSAGE.ADMIN_INFO);
+      navigate('/');
+    }
+  }, []);
 
   return (
     <>
