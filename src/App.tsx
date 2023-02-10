@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 const App = () => {
   return (
     <CartProvider>
-      <div className='m-auto w-3/5'>
+      <div className='m-auto max-w-450px w-full px-5 md:w-3/5 '>
         <Header />
         <Outlet />
       </div>

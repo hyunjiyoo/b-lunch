@@ -45,29 +45,29 @@ export default function Header() {
   return (
     <header className='flex items-center justify-between mb-4'>
       <Link to='/' className='flex items-center text-orange-600 cursor-pointer'>
-        <BsGiftFill className='text-xl' />
-        <h1 className='text-2xl ml-2 w-max'>B-Lunch</h1>
+        <BsGiftFill className='text-base sm:text-xl' />
+        <h1 className='text-xl sm:text-2xl ml-2 w-max'>B-Lunch</h1>
       </Link>
       <div className='flex items-center'>
         <nav>
-          <ul className='flex gap-2'>
-            <Link to='/products' className='cursor-pointer hover:opacity-70 mr-5'>
+          <ul className='flex'>
+            <Link to='/products' className='cursor-pointer hover:opacity-70 text-sm mr-2 sm:text-base sm:mr-5'>
               Products
             </Link>
           </ul>
         </nav>
         {admin && (
           <Link to='register'>
-            <FiEdit className='cursor-pointer text-2xl mr-5' />
+            <FiEdit className='cursor-pointer text-lg mr-2 sm:text-2xl sm:mr-5' />
           </Link>
         )}
         <Link to='carts' className='relative'>
-          <BsCart4 className='cursor-pointer text-2xl mr-5'/>
-          <span className='absolute bg-orange-500 text-white rounded-full text-sm px-1.5 right-2 bottom-2'>
+          <BsCart4 className='cursor-pointer text-lg mr-2 sm:text-2xl sm:mr-5'/>
+          <span className='absolute bg-orange-500 text-white rounded-full text-xs right-1 bottom-2 px-0.18 sm:text-sm sm:px-1.5 sm:right-2 '>
             {count || ''}
           </span>
         </Link>
-        <button className='bg-orange-600 px-3 py-1 rounded text-white' onClick={handleLoginButton}>
+        <button className='bg-orange-600 text-xs px-2 py-1 sm:text-base sm:px-3 rounded text-white' onClick={handleLoginButton}>
           {uid ? 'Logout' : 'Login'}
         </button>
       </div>

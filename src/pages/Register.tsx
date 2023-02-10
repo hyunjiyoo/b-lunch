@@ -81,7 +81,7 @@ export default function Register() {
       navigate('/');
     }
     
-    if (!R.isEmpty(getUserInfo().isAdmin)) {
+    if (!getUserInfo().isAdmin) {
       alert(MESSAGE.ADMIN_INFO);
       navigate('/');
     }
@@ -91,8 +91,8 @@ export default function Register() {
     <>
       <h2 className='text-lg font-semibold mt-10'>제품 등록</h2>
       <hr className='mt-2 mb-4' />
-      <div className='flex'>
-        <div className='w-350px h-350px bg-slate-100 mr-4'>
+      <div className='flex flex-col lg:flex-row'>
+        <div className='lg:w-350px h-350px w-full bg-slate-100 mr-4'>
           <img src={previewImg} alt='preview_image' className='w-full h-full object-contain' />
         </div>
         <form className='flex flex-col flex-1 gap-2' onSubmit={handleSubmit(registerProduct)}>
