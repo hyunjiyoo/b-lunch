@@ -85,7 +85,7 @@ export default function Register() {
       alert(MESSAGE.ADMIN_INFO);
       navigate('/');
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <>
