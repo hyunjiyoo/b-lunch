@@ -71,7 +71,7 @@ export default function Carts() {
   }, [navigate]);
 
   return (
-    <div>
+    <>
       <h1 className='text-xl font-bold text-center my-4'>내 장바구니 🛒</h1>
       <hr />
       <ul className='py-3 px-4'>
@@ -100,6 +100,6 @@ export default function Carts() {
         주문하기
       </button>
       <p className='text-gray-500 text-right mt-2 text-sm'>* 상품 금액 ₩100,000원 이상일 경우 무료배송</p>
-    </div>
+    </>
   );
 }
