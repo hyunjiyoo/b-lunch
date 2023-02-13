@@ -15,7 +15,7 @@ const initialUser: UserType = {
 
 const MESSAGE = {
   LOGIN_INFO: '로그인을 먼저 해주세요.',
-  ADMIN_INFO: '어드민 계정이 아닙니다.',
+  ADMIN_INFO: '권한이 없습니다.',
   OPTION_INFO: '옵션을 먼저 선택해주세요.',
   CART_INFO: '장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?',
 };

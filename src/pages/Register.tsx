@@ -76,13 +76,12 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (R.isEmpty(getUserInfo().uid)) {
-      alert(MESSAGE.LOGIN_INFO);
-    } else if (!getUserInfo().isAdmin) {
+    if (R.isEmpty(getUserInfo().uid) || !getUserInfo().isAdmin) {
       alert(MESSAGE.ADMIN_INFO);
+      navigate('/');
+      return;
     }
 
-    navigate('/');
   }, [navigate]);
 
   return (
