@@ -6,7 +6,8 @@
 <div>
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
   <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Tailwind CSS-0C152A?style=flat-square&logo=Tailwind CSS&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Tailwind CSS-0C152A?style=flat-square&logo=Tailwind CSS&logoColor=0DA5E9"/>
+  <img src="https://img.shields.io/badge/Testing Library-FD4544?style=flat-square&logo=TestingLibrary&logoColor=white"/>
 </div>
 <div>
   <img src="https://img.shields.io/badge/React Router-F44250?style=flat-square&logo=ReactRouter&logoColor=white"/>
@@ -25,8 +26,8 @@
 
 <br />
 
-
 ## ▪️ 데모
+
 https://b-lunch.netlify.app/
 
 아래는 Admin 계정으로 로그인했을 경우, 상품등록 진행화면입니다.
@@ -34,7 +35,8 @@ https://b-lunch.netlify.app/
 <img src="https://res.cloudinary.com/dg0bagjoq/image/upload/v1675846527/ludfmzibb4ex5v7xpvsi.gif" alt="register" width="300px"/>
 <br />
 
-## ▪️ 어떤 서비스 ? 
+## ▪️ 어떤 서비스 ?
+
 **나만의 도시락을 만들어 주는 쇼핑몰 (Balanced Lunch)**
 
 카테고리 별로 담고싶은 음식을 담으면 당일 배송해주는 영양가있는 도시락을 신선하게 받을 수 있다.
@@ -42,6 +44,7 @@ https://b-lunch.netlify.app/
 <br />
 
 ## ▪️ 기능 구현
+
 - 일반계정과 어드민계정을 분리하여, 어드민일 경우 상품등록 가능
 - firebase Google OAuth 로그인 구현
 - firebase Database 연동
@@ -53,6 +56,7 @@ https://b-lunch.netlify.app/
 <br />
 
 ## ▪️ 프로젝트를 통해 배운점
+
 - 코드를 작성하기 전 데이터 구조 설계에 대한 고민하는 시간을 아끼지 말자.
   - 데이터 특성을 파악하여 어디에 저장할지 고민하고,
   - 데이터를 전달받는 곳에서도 데이터 생성시 만든 구조를 통해 접근하기 편하도록 설계한다.
@@ -62,17 +66,18 @@ https://b-lunch.netlify.app/
 <br />
 
 ## ▪️ 느낀점
+
 ```text
 항상 그래왔듯이.. 아쉬움과 뿌듯함이 공존한다.
 하지만 나는 이 프로젝트를 하며 나의 실패경험에 집중해본다.
 많은 시도에 따른 실패를 통해 배움이 있었고, 나는 성장했다.
 
-처음 프로젝트를 시작할때의 설렘을 기억한다. 
-단순 토이프로젝트를 넘어 실제로 배포하여 서비스화하고 싶은 마음이 울렁였다. 
-아직 완성되지 않은 기능들이 나의 숙제로 남아있지만 
+처음 프로젝트를 시작할때의 설렘을 기억한다.
+단순 토이프로젝트를 넘어 실제로 배포하여 서비스화하고 싶은 마음이 울렁였다.
+아직 완성되지 않은 기능들이 나의 숙제로 남아있지만
 언젠가 나도 내가 개발한 어플리케이션으로 수익을 보는 날이 오지 않을까 기대해본다.
 
-이번 프로젝트를 통해 처음 사용해보는 라이브러리도 있었고, 
+이번 프로젝트를 통해 처음 사용해보는 라이브러리도 있었고,
 개념으로만 알고있던 기능들도 처음 시도해본 것이 많다.
 나에게 있어 '처음'의 경험에서는 설레임, 두려움, 기대감이 포함되어 있는 것 같다.
 이 프로젝트를 하며 나에게 남은 느낌과 같다.
@@ -81,10 +86,11 @@ https://b-lunch.netlify.app/
 목적을 달성해서 기쁘다. 허허
 ```
 
-
 <br />
 
 ## ▪️ 미래의 나자신아 이 기능을 개발해주겠니❓
+
+- **컴포넌트 테스트 코드 작성중** 👩‍💻 ..
 - 등록한 상품 수정 및 삭제 기능
 - 주문하기 기능
 - 구글 계정 이외의 계정으로 로그인 추가
@@ -92,15 +98,16 @@ https://b-lunch.netlify.app/
 - 모바일 반응형 UI
 - ...
 
-
 <br />
 
 ## ▪️ 개발 기간
+
 - 2023.01.18 ~ 2023.02.08
 
 <br />
 
 ## ▪️ 사용 언어
+
 <img 
   src="https://user-images.githubusercontent.com/23496927/148519290-7ba474cb-a1d3-49fc-9da9-ede3555130eb.png" 
   height="60px" />
@@ -114,6 +121,7 @@ https://b-lunch.netlify.app/
 <br />
 
 ## ▪️ 배포
+
 <img 
   src="https://user-images.githubusercontent.com/23496927/148517276-c7fe849e-0921-4a75-88f8-959e2b7a8328.jpeg" 
   width="30%" 
