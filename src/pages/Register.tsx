@@ -5,11 +5,10 @@ import * as yup from 'yup';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductType } from 'types';
-import * as R from 'ramda';
 import { v4 as uuid } from 'uuid';
 import Error from 'components/Error/Error';
-import { getUserInfo } from 'util/\bcommon';
 import { useNavigate } from 'react-router-dom';
+import { useUserAuth } from 'context/UserAuthContext';
 
 const schema = yup.object({
   file: yup.mixed().test('filesize', '파일을 등록해주세요', (file: FileList) => file.length > 0),
@@ -27,6 +26,7 @@ const schema = yup.object({
 });
 
 export default function Register() {
+  const { isAdmin } = useUserAuth();
   const navigate = useNavigate();
   const [previewImg, setPreviewImage] = useState<string>(DEFAULT_IMAGE_URL);
   const {
@@ -59,7 +59,10 @@ export default function Register() {
 
   const registerProduct = async (product: ProductType) => {
     try {
-      const option = product.option.split(',').filter((opt: string) => opt.trim()).join();
+      const option = product.option
+        .split(',')
+        .filter((opt: string) => opt.trim())
+        .join();
       const { name, price, category, description, file } = product;
       const fileObj = (file as unknown as FileList)[0];
       const imageUrl = await imageUploadToCloudinary(fileObj);
@@ -76,13 +79,12 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (R.isEmpty(getUserInfo().uid) || !getUserInfo().isAdmin) {
+    if (!isAdmin) {
       alert(MESSAGE.ADMIN_INFO);
       navigate('/');
       return;
     }
-
-  }, [navigate]);
+  }, [isAdmin, navigate]);
 
   return (
     <>
