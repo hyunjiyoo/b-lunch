@@ -2,7 +2,7 @@ import { UserType } from 'types';
 
 const UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET as string;
 const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
-const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`;
+const CLOUDINARY_URL = `https://api.cloudinary.com/v2/${CLOUDINARY_CLOUD_NAME}/upload/q_50`;
 const DEFAULT_IMAGE_URL = 'https://via.placeholder.com/400';
 
 const initialUser: UserType = {
