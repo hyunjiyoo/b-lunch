@@ -104,17 +104,18 @@ https://b-lunch.vercel.app/
 - 랜딩페이지 로딩시간이 너무 길어 이미지 최적화 진행
   - 정적이미지인 배너이미지를 압축후 이미지형식변경 (png > webp)
   - cloudinary에서 받아오는 이미지 크기 옵션추가해서 요청
+    - `q_10` 추가해서 quality 10%로 줄여서 요청
 - 배포플랫폼 변경
   - Netlify > Vercel
-  - Load 속도 향상 : 3,330ms > 648ms (약 20% 향상)
-  - DOMContentLoaded 속도 향상 : 461ms > 155ms (약 34% 향상)
+  - Load 속도 향상 : `3,330ms > 648ms (약 20% 향상)`
+  - DOMContentLoaded 속도 향상 : `461ms > 155ms (약 34% 향상)`
 - 컴포넌트 테스트 코드 작성중.. 👩‍💻
   - Product component
   - Register component
 
-상## ▪️ 개발 기간
+▪️ 개발 기간
 
-- 2023.01.18 ~ 2023.02.08
+- 1차 배포: 2023.01.18 ~ 2023.02.08
 
 <br />
 
