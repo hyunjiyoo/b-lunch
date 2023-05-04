@@ -113,7 +113,7 @@ https://b-lunch.vercel.app/
   - Product component
   - Register component
 
-▪️ 개발 기간
+## ▪️ 개발 기간
 
 - 1차 배포: 2023.01.18 ~ 2023.02.08
 
