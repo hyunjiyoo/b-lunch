@@ -21,14 +21,14 @@
   <img src="https://img.shields.io/badge/Cloudinary-3447C5?style=flat-square&logoColor=white"/>
   <img src="https://img.shields.io/badge/Yarn-2B8EBB?style=flat-square&logo=Yarn&logoColor=white"/>
   <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Netlify-070B0E?style=flat-square&logo=Netlify&logoColor=47A3BD"/>
+  <img src="https://img.shields.io/badge/Vercel-white?style=flat-square&logo=Vercel&logoColor=black"/>
 </div>
 
 <br />
 
 ## ▪️ 데모
 
-https://b-lunch.netlify.app/
+https://b-lunch.vercel.app/
 
 아래는 Admin 계정으로 로그인했을 경우, 상품등록 진행화면입니다.
 
@@ -90,7 +90,6 @@ https://b-lunch.netlify.app/
 
 ## ▪️ 미래의 나자신아 이 기능을 개발해주겠니❓
 
-- **컴포넌트 테스트 코드 작성중** 👩‍💻 ..
 - 등록한 상품 수정 및 삭제 기능
 - 주문하기 기능
 - 구글 계정 이외의 계정으로 로그인 추가
@@ -100,7 +99,20 @@ https://b-lunch.netlify.app/
 
 <br />
 
-## ▪️ 개발 기간
+## ▪️ 개선된 기능
+
+- 랜딩페이지 로딩시간이 너무 길어 이미지 최적화 진행
+  - 정적이미지인 배너이미지를 압축후 이미지형식변경 (png > webp)
+  - cloudinary에서 받아오는 이미지 크기 옵션추가해서 요청
+- 배포플랫폼 변경
+  - Netlify > Vercel
+  - Load 속도 향상 : 3,330ms > 648ms (약 20% 향상)
+  - DOMContentLoaded 속도 향상 : 461ms > 155ms (약 34% 향상)
+- 컴포넌트 테스트 코드 작성중.. 👩‍💻
+  - Product component
+  - Register component
+
+상## ▪️ 개발 기간
 
 - 2023.01.18 ~ 2023.02.08
 
@@ -123,6 +135,6 @@ https://b-lunch.netlify.app/
 ## ▪️ 배포
 
 <img 
-  src="https://user-images.githubusercontent.com/23496927/148517276-c7fe849e-0921-4a75-88f8-959e2b7a8328.jpeg" 
+  src="https://res.cloudinary.com/dg0bagjoq/image/upload/v1683184442/bjy6fkweskay3lzmovak.png" 
   width="30%" 
-  title="Netlify_Logo"/>
+  alt="Vercel_Logo"/>
