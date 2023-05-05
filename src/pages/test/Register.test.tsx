@@ -1,7 +1,7 @@
-import { screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Register from 'pages/Register';
-import { render } from 'tests/utils';
+import { withRouter } from 'tests/utils';
 import { DEFAULT_IMAGE_URL, MESSAGE } from 'config/const';
 import { UserAuthContext } from 'context/UserAuthContext';
 import { Route } from 'react-router-dom';
@@ -16,7 +16,7 @@ afterEach(() => {
 
 describe('Register', () => {
   it('renders all required form elements', () => {
-    render(<Route path='/' element={<Register />} />);
+    render(withRouter(<Route path='/' element={<Register />} />));
 
     const image = screen.getByRole('img') as HTMLImageElement;
     const button = screen.getByRole('button', { name: '제품 등록하기' }) as HTMLButtonElement;
@@ -33,7 +33,7 @@ describe('Register', () => {
   });
 
   it('displays an alert message when user is not admin', async () => {
-    render(
+    withRouter(
       <Route
         path='/'
         element={
