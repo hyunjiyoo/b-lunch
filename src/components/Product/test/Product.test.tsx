@@ -29,4 +29,9 @@ describe('Product', () => {
     expect(screen.getByText(convertPriceFormat(product.price))).toBeInTheDocument();
     expect(screen.getByText(product.category)).toBeInTheDocument();
   });
+
+  it('renders correctly', () => {
+    const component = renderer.create(withRouter(<Route path='/' element={<Product product={product} />} />));
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 });
