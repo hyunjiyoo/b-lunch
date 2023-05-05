@@ -3,7 +3,8 @@ import '@testing-library/jest-dom';
 import { ProductType } from 'types';
 import Product from '../Product';
 import { convertPriceFormat } from 'util/common';
-import { render } from 'util/test-utils';
+import { render } from 'tests/utils';
+import { Route } from 'react-router-dom';
 
 describe('Product', () => {
   const product: ProductType = {
@@ -17,7 +18,7 @@ describe('Product', () => {
   };
 
   it('renders product item', () => {
-    render(<Product product={product} />);
+    render(<Route path='/' element={<Product product={product} />} />);
 
     const image = screen.getByRole('img') as HTMLImageElement;
     expect(image.alt).toBe(`${product.name}_image`);

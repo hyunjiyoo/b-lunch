@@ -1,9 +1,10 @@
 import { screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Register from 'pages/Register';
-import { render } from 'util/test-utils';
+import { render } from 'tests/utils';
 import { DEFAULT_IMAGE_URL, MESSAGE } from 'config/const';
 import { UserAuthContext } from 'context/UserAuthContext';
+import { Route } from 'react-router-dom';
 
 beforeEach(() => {
   window.alert = jest.fn();
@@ -15,7 +16,7 @@ afterEach(() => {
 
 describe('Register', () => {
   it('renders all required form elements', () => {
-    render(<Register />);
+    render(<Route path='/' element={<Register />} />);
 
     const image = screen.getByRole('img') as HTMLImageElement;
     const button = screen.getByRole('button', { name: '제품 등록하기' }) as HTMLButtonElement;
@@ -33,9 +34,14 @@ describe('Register', () => {
 
   it('displays an alert message when user is not admin', async () => {
     render(
-      <UserAuthContext.Provider value={{ isAdmin: false }}>
-        <Register />
-      </UserAuthContext.Provider>
+      <Route
+        path='/'
+        element={
+          <UserAuthContext.Provider value={{ isAdmin: false }}>
+            <Register />
+          </UserAuthContext.Provider>
+        }
+      />
     );
 
     await waitFor(() => expect(alert).toHaveBeenCalledTimes(1));
