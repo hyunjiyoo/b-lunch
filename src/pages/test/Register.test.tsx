@@ -33,15 +33,17 @@ describe('Register', () => {
   });
 
   it('displays an alert message when user is not admin', async () => {
-    withRouter(
-      <Route
-        path='/'
-        element={
-          <UserAuthContext.Provider value={{ isAdmin: false }}>
-            <Register />
-          </UserAuthContext.Provider>
-        }
-      />
+    render(
+      withRouter(
+        <Route
+          path='/'
+          element={
+            <UserAuthContext.Provider value={{ isAdmin: false }}>
+              <Register />
+            </UserAuthContext.Provider>
+          }
+        />
+      )
     );
 
     await waitFor(() => expect(alert).toHaveBeenCalledTimes(1));
