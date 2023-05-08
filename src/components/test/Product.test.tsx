@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import { ProductType } from 'types';
 import { convertPriceFormat } from 'util/common';
 import { withRouter } from 'tests/utils';
-import Product from '../Product';
+import Product from '../Product/Product';
 
 describe('Product', () => {
   const product: ProductType = {
