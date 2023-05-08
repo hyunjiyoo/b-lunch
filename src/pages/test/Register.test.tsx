@@ -1,10 +1,11 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render, screen, waitFor } from '@testing-library/react';
+import renderer from 'react-test-renderer';
+import { Route } from 'react-router-dom';
 import Register from 'pages/Register';
 import { withRouter } from 'tests/utils';
 import { DEFAULT_IMAGE_URL, MESSAGE } from 'config/const';
 import { UserAuthContext } from 'context/UserAuthContext';
-import { Route } from 'react-router-dom';
 
 beforeEach(() => {
   window.alert = jest.fn();
@@ -48,5 +49,10 @@ describe('Register', () => {
 
     await waitFor(() => expect(alert).toHaveBeenCalledTimes(1));
     expect(alert).toHaveBeenCalledWith(MESSAGE.ADMIN_INFO);
+  });
+
+  it('renders correctly', () => {
+    const component = renderer.create(withRouter(<Route path='/' element={<Register />} />));
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });

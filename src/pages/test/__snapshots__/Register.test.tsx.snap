@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register renders correctly 1`] = `
+Array [
+  <h2
+    className="text-lg font-semibold mt-10"
+  >
+    제품 등록
+  </h2>,
+  <hr
+    className="mt-2 mb-4"
+  />,
+  <div
+    className="flex flex-col lg:flex-row"
+  >
+    <div
+      className="lg:w-350px h-350px w-full bg-slate-100 mr-4"
+    >
+      <img
+        alt="preview_image"
+        className="w-full h-full object-contain"
+        src="https://via.placeholder.com/400"
+      />
+    </div>
+    <form
+      className="flex flex-col flex-1 gap-2"
+      onSubmit={[Function]}
+    >
+      <input
+        accept="image/*"
+        className="border-2 p-2 text-sm outline-orange-400 mt-2"
+        name="file"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="file"
+      />
+      <input
+        className="text-sm border-2 p-2 outline-orange-400"
+        name="name"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="제품명"
+        type="text"
+      />
+      <input
+        className="text-sm border-2 p-2 outline-orange-400"
+        name="price"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="가격"
+        type="number"
+      />
+      <input
+        className="text-sm border-2 p-2 outline-orange-400"
+        name="category"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="카테고리"
+        type="text"
+      />
+      <input
+        className="text-sm border-2 p-2 outline-orange-400"
+        name="description"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="제품 설명"
+        type="text"
+      />
+      <input
+        className="text-sm border-2 p-2 outline-orange-400"
+        name="option"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="옵션들(콤마(,)로 구분)"
+        type="text"
+      />
+      <button
+        className="bg-orange-500 text-white py-2 rounded-xl mt-3"
+        type="submit"
+      >
+        제품 등록하기
+      </button>
+    </form>
+  </div>,
+]
+`;
