@@ -2,10 +2,10 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { Route } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import { ProductType } from 'types';
-import { convertPriceFormat } from 'util/common';
 import { withRouter } from 'tests/utils';
+import { ProductType } from 'types';
 import Product from '../Product/Product';
+import { convertPriceFormat } from '@/util/common';
 
 describe('Product', () => {
   const product: ProductType = {

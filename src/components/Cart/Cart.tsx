@@ -1,8 +1,8 @@
-import { ProductType } from 'types';
-import { convertPriceFormat } from 'util/\bcommon';
+import { useState } from 'react';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import { BsTrashFill } from 'react-icons/bs';
-import { useState } from 'react';
+import { ProductType } from 'types';
+import { convertPriceFormat } from '@/util/common';
 
 interface CartProps {
   item: ProductType;

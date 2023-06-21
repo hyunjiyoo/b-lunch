@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Cart from 'components/Cart/Cart';
+import { DELIVERY_COST, FREE_DELIVERTY_PRICE, MESSAGE } from 'config/const';
+import { useCart } from 'context/CartContext';
+import * as R from 'ramda';
 import { AiFillPlusSquare } from 'react-icons/ai';
 import { FaEquals } from 'react-icons/fa';
-import * as R from 'ramda';
-import { useNavigate } from 'react-router-dom';
-import { DELIVERY_COST, FREE_DELIVERTY_PRICE, MESSAGE } from 'config/const';
-import { convertPriceFormat, getCartItems, getUserInfo } from 'util/\bcommon';
-import Cart from 'components/Cart/Cart';
 import { ProductType } from 'types';
-import { useCart } from 'context/CartContext';
+import { convertPriceFormat, getCartItems, getUserInfo } from '@/util/common';
 
 export default function Carts() {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ export default function Carts() {
     const totPrice = Object.values(cartItems).reduce((acc, { price, count }) => acc + price * count!, 0);
     setProductPrice(totPrice);
 
-    const freeDeliveryPriceCondition = (productPrice >= FREE_DELIVERTY_PRICE) || productPrice === 0;
+    const freeDeliveryPriceCondition = productPrice >= FREE_DELIVERTY_PRICE || productPrice === 0;
     freeDeliveryPriceCondition ? setDeliveryPrice(0) : setDeliveryPrice(DELIVERY_COST);
   }, [cartItems, productPrice]);
 

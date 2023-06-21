@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getUserInfo } from 'util/\bcommon';
+import { getUserInfo } from '@/util/common';
 
 interface UserAuthContextProps {
   isAdmin: boolean;

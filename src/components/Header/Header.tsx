@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { BsGiftFill, BsCart4 } from 'react-icons/bs';
-import { FiEdit } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import { logIn, logOut } from 'api/sign';
-import { getCartProducts, writeCartData, writeUserData } from 'db/database';
-import { getUserInfo } from 'util/\bcommon';
 import { useCart } from 'context/CartContext';
+import { getCartProducts, writeCartData, writeUserData } from 'db/database';
+import { BsGiftFill, BsCart4 } from 'react-icons/bs';
+import { FiEdit } from 'react-icons/fi';
+import { getUserInfo } from '@/util/common';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function Header() {
   const onLogIn = async () => {
     const user = await logIn();
     const cart = await getCartProducts(user.uid);
-        
+
     writeUserData(user);
     setUid(() => getUserInfo().uid);
     setAdmin(() => getUserInfo().isAdmin);
@@ -25,7 +25,7 @@ export default function Header() {
 
   const onLogOut = async () => {
     await logOut();
-    
+
     writeCartData(uid);
     setUid('');
     setAdmin(false);
@@ -37,7 +37,7 @@ export default function Header() {
   const handleLoginButton = () => {
     uid ? onLogOut() : onLogIn();
   };
-  
+
   useEffect(() => {
     updateCount();
   }, [uid, count, updateCount]);
@@ -62,7 +62,7 @@ export default function Header() {
           </Link>
         )}
         <Link to='carts' className='relative'>
-          <BsCart4 className='cursor-pointer text-lg mr-2 sm:text-2xl sm:mr-5'/>
+          <BsCart4 className='cursor-pointer text-lg mr-2 sm:text-2xl sm:mr-5' />
           <span className='absolute bg-orange-500 text-white rounded-full text-xs right-1 bottom-2 px-0.18 sm:text-sm sm:px-1.5 sm:right-2 '>
             {count || ''}
           </span>

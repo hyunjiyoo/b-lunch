@@ -1,10 +1,10 @@
+import { ChangeEvent, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { MESSAGE } from 'config/const';
 import { useCart } from 'context/CartContext';
 import * as R from 'ramda';
-import { ChangeEvent, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { CartType, ProductType } from 'types';
-import { convertPriceFormat, getCartItems, getUserInfo } from 'util/\bcommon';
+import { convertPriceFormat, getCartItems, getUserInfo } from '@/util/common';
 
 interface UpdateCartItemsType {
   cartItems: CartType;
@@ -73,8 +73,15 @@ export default function Detail() {
           <hr className='my-4' />
           <p className='text-sm text-zinc-500 h-100px'>{description}</p>
           <div className='flex items-center'>
-            <label htmlFor='select' className='mr-2 text-sm text-white py-1 px-2 border border-orange-500 bg-orange-500 font-semibold'>옵션</label>
-            <select id='select' value={selectedOption} className='my-4 border-2 border-orange-500 flex-1 p-1 text-slate-600 text-sm outline-none' onChange={selectOption}>
+            <label htmlFor='select' className='mr-2 text-sm text-white py-1 px-2 border border-orange-500 bg-orange-500 font-semibold'>
+              옵션
+            </label>
+            <select
+              id='select'
+              value={selectedOption}
+              className='my-4 border-2 border-orange-500 flex-1 p-1 text-slate-600 text-sm outline-none'
+              onChange={selectOption}
+            >
               <option value=''>옵션을 선택해주세요</option>
               {option.split(',').map((opt: string, idx: number) => (
                 <option key={`${opt}_${idx}`} value={opt.trim()}>
