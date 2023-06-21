@@ -1,0 +1,22 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["import"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroupsExcludedImportTypes": ["react", "react-dom"],
+        "pathGroups": [
+          { "pattern": "react*", "group": "builtin", "position": "before" },
+          { "pattern": "react-dom", "group": "builtin", "position": "before" },
+          { "pattern": "react-icons", "group": "builtin", "position": "before" }
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
